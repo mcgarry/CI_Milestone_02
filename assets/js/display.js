@@ -1,5 +1,7 @@
 // let targChipScale = .3;
 
+
+
 function DisplayObject()
 {
 	// ;
@@ -32,9 +34,10 @@ function DisplayObject()
 	}
 }
 
-function makeClearButton(img,posX,posY)
+function makeClearButton(imgPath,img,posX,posY)
 {
-	var btn = PIXI.Sprite.fromImage(`img/${img}.png`);
+	console.log(`>>>> ${imgPath}${img}.png`);
+	var btn = PIXI.Sprite.fromImage(`${imgPath}${img}.png`);
 	btn.scale.x = btn.scale.y = .5;
 	btn.interactive = true;
 	btn.buttonMode = true;
@@ -63,9 +66,9 @@ function makeClearButton(img,posX,posY)
 	app.stage.addChild(btn);
 }
 
-function makeAutoButton(img,posX,posY)
+function makeAutoButton(imgPath,img,posX,posY)
 {
-	var btn = PIXI.Sprite.fromImage(`img/${img}.png`);
+	var btn = PIXI.Sprite.fromImage(`${imgPath}${img}.png`);
 	btn.scale.x = btn.scale.y = .5;
 	btn.interactive = true;
 	btn.buttonMode = true;

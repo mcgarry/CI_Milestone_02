@@ -2,6 +2,7 @@
 	// noZero - 1 for roulette with one Zero, 2 for roulette with two Zero's
 let tableObj = {};
 
+//let imgPath = 'assets/img/';
 // tableObj.targs[targContName].container
 
 function setTable()
@@ -87,15 +88,15 @@ function redrawTable()
 
 function makeTarg(key)
 {
-	//let targ = PIXI.Sprite.fromImage('img/'+key+'.png');
+
 	let targ = new PIXI.Container();
 	targ["name"] = key;
 	targ.x = tableObj.targs[key].x;
 	targ.y = tableObj.targs[key].y;
 	targ.width = tableObj.settings.targWidth;
 	targ.height = tableObj.settings.targHeight;
-	
-	let contBK = PIXI.Sprite.fromImage('img/'+key+'.png');
+
+	let contBK = PIXI.Sprite.fromImage(`${imgPath}${key}.png`);
 	contBK["name"] = key;
 	contBK.width = tableObj.settings.targWidth;
 	contBK.height = tableObj.settings.targHeight;

@@ -13,6 +13,8 @@ let chipStackYOffset = 3;
 // scale of chips on targets
 let targChipScale = .3;
 
+//let imgPath = 'assets/img/';
+
 function onRtnChip(rtnChip,rtnX,rtnY)
 {
 	TweenLite.to(rtnChip.position, .5, {x:rtnX , y:rtnY, onComplete:onRtnChipCB, onCompleteParams:[rtnChip]});
@@ -78,9 +80,9 @@ function onRtnChipCB(rtnChip)
 	app.stage.addChild(container);*/
 //}
 
-function makeChipBtn(value,posX,posY)
+function makeChipBtn(imgPath,value,posX,posY)
 {
-	var btn = PIXI.Sprite.fromImage(`img/chip-${value}.png`);
+	var btn = PIXI.Sprite.fromImage(`${imgPath}chip-${value}.png`);
 	btn.scale.x = btn.scale.y = .5;
 	btn.interactive = true;
 	btn.buttonMode = true;
@@ -96,16 +98,16 @@ function makeChipBtn(value,posX,posY)
 		//console.log(app.stage.getMousePosition());
 		const newPosition = btn.data.getLocalPosition(btn.parent);
 		console.log(">>>"+newPosition.x);
-		makeDragChip(value, newPosition.x, newPosition.y, btn.parent);
+		makeDragChip(imgPath, value, newPosition.x, newPosition.y, btn.parent);
 	});
 	
 	app.stage.addChild(btn);
 }
 
-function makeDragChip(value, chipStartX, chipStartY, parent)
+function makeDragChip(imgPath, value, chipStartX, chipStartY, parent)
 {
 	let dragChipParent = parent;
-	let img = `assets/img/chip-${value}.png`; //'img/chip-' + value + '.png';
+	let img = `${imgPath}chip-${value}.png`; //'img/chip-' + value + '.png';
 	let dragChip = PIXI.Sprite.fromImage(img);
 	let chipEvent;
 	
@@ -138,18 +140,18 @@ function makeDragChip(value, chipStartX, chipStartY, parent)
 			let targContName = 'targ'+hitContNo;
 			let targContainer = tableObj.targs[targContName].container;
 		
-			console.log('targ name: '+targContName);
-			console.log('dragChip value: '+dragChip.value);
+			//console.log('targ name: '+targContName);
+			//console.log('dragChip value: '+dragChip.value);
 			let chipArray = betObject.setBet(targContName, dragChip.value);
 				
-			console.log("chipArray >>>> : "+chipArray);
-			console.log("total >>>>>>>> : "+betObject.getBetTotal());
+			//console.log("chipArray >>>> : "+chipArray);
+			//console.log("total >>>>>>>> : "+betObject.getBetTotal());
 				
 			// ???
 			if ( chipArray != [] ){
 				// Delete old Chips
 		 		clearChipsOnTarg(targContainer);
-				setChipsOnTarg(targContainer, chipArray);
+				setChipsOnTarg(imgPath, targContainer, chipArray);
 			}else{
 				console.error("chip not added to bet");
 				onRtnChip(dragChip, chipStartX, chipStartY);
@@ -196,7 +198,7 @@ function makeDragChip(value, chipStartX, chipStartY, parent)
 	}
 }
 	
-	function setChipsOnTarg(targ, chipArray){
+	function setChipsOnTarg(imgPath, targ, chipArray){
 		
 		 // make new chips
 		// let targCentreX = targ.x + (targ.width/2);
@@ -219,7 +221,7 @@ function makeDragChip(value, chipStartX, chipStartY, parent)
 		//}
 		//for (let k = 0; k < chipArray.length; k++){
 			let value = chipArray[k];
-			let img = `img/chip-${value}.png`; 
+			let img = `${imgPath}chip-${value}.png`;
 			//'img/chip-' + value + '.png';
 			let displayChip = PIXI.Sprite.fromImage(img);
 			let chipEvent;
