@@ -1,30 +1,19 @@
-// let targChipScale = .3;
-
 
 
 function DisplayObject()
 {
-	// ;
-	
 	// display total
 	let betTotalTextInst = new PIXI.Text('Total Bet:');
 	betTotalTextInst.x = 20;
 	betTotalTextInst.y = 550;
 	app.stage.addChild(betTotalTextInst);
-	
-	
+
 	let betTotalText = new PIXI.Text(betObject.getBetCurrency()+' 0.00');
 	betTotalText.x = 140;
 	betTotalText.y = 550;
-	
-	//betTotalText.x = container.x + (container.width/2);
-	//betTotalText.y = container.y + (container.height - 30);
+
 
 	app.stage.addChild(betTotalText);
-	
-	//displayObject.betTotalText.setText(betObject.getBetCurrency()+' '++'.00');
-	
-	//betTotalText.setText(betObject.getBetCurrency()+' 456.00');
 	
 	this.setBetTotalText = function(totalText)
 	{
@@ -36,12 +25,11 @@ function DisplayObject()
 
 function makeClearButton(imgPath,img,posX,posY)
 {
-	console.log(`>>>> ${imgPath}${img}.png`);
 	var btn = PIXI.Sprite.fromImage(`${imgPath}${img}.png`);
 	btn.scale.x = btn.scale.y = .5;
 	btn.interactive = true;
 	btn.buttonMode = true;
-	btn.anchor.set(0.5);
+	btn.anchor.set(0);
 	/*btn.x = app.renderer.width - (app.renderer.width *.1);
 	btn.y = app.renderer.height - (app.renderer.height *.1);*/
 	btn.x = posX
@@ -72,7 +60,7 @@ function makeAutoButton(imgPath,img,posX,posY)
 	btn.scale.x = btn.scale.y = .5;
 	btn.interactive = true;
 	btn.buttonMode = true;
-	btn.anchor.set(0.5);
+	btn.anchor.set(0);
 	/*btn.x = app.renderer.width - (app.renderer.width *.1);
 	btn.y = app.renderer.height - (app.renderer.height *.1);*/
 	btn.x = posX

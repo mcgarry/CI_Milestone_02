@@ -13,14 +13,13 @@ let chipStackYOffset = 3;
 // scale of chips on targets
 let targChipScale = .3;
 
-//let imgPath = 'assets/img/';
-
-function onRtnChip(rtnChip,rtnX,rtnY)
-{
-	TweenLite.to(rtnChip.position, .5, {x:rtnX , y:rtnY, onComplete:onRtnChipCB, onCompleteParams:[rtnChip]});
+//////// If a chip is dropped outside the table it is returned to its origin
+function onRtnChip(rtnChip,rtnX,rtnY) {
+	//console.log("gsap");
+	gsap.to(rtnChip.position, .5, {x:rtnX , y:rtnY, onComplete:onRtnChipCB, onCompleteParams:[rtnChip]});
 }
-function onRtnChipCB(rtnChip)
-{
+
+function onRtnChipCB(rtnChip) {
 	app.stage.removeChild(rtnChip);
 	/*console.log("onRtnChipCB rtnChip.x:"+rtnChip.x);
 	for (var i = 0; i < rtnChip.length; i++) {
@@ -80,13 +79,13 @@ function onRtnChipCB(rtnChip)
 	app.stage.addChild(container);*/
 //}
 
-function makeChipBtn(imgPath,value,posX,posY)
-{
+//////// Generates chips on the table
+function makeChipBtn(imgPath,value,posX,posY) {
 	var btn = PIXI.Sprite.fromImage(`${imgPath}chip-${value}.png`);
 	btn.scale.x = btn.scale.y = .5;
 	btn.interactive = true;
 	btn.buttonMode = true;
-	btn.anchor.set(0.5);
+	btn.anchor.set(0);
 	/*btn.x = app.renderer.width - (app.renderer.width *.1);
 	btn.y = app.renderer.height - (app.renderer.height *.1);*/
 	btn.x = posX
